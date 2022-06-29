@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Inscription from './components/Inscription'
 import Connexion from './components/Connexion'
 import Salle from './components/Salle'
+import Copyright from './components/Copyright'
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="salle" element={<Salle />} />
         </Routes>
       </div>
+      <Copyright sx={{ mt: 8, mb: 4 }}/>
     </>
 
   );
