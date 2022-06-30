@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import Nav from './components/Nav'
 import Home from './components/Home'
-import Inscription from './components/Inscription'
-import Connexion from './components/Connexion'
-import Salle from './components/Salle'
+import SignUp from './components/SignUp'
+import SignIn from './components/SignIn'
+import Room from './components/Room'
 import Copyright from './components/Copyright'
 
 
@@ -16,13 +16,12 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="inscription" element={<Inscription />} />
-          <Route path="connexion" element={<Connexion />} />
-          <Route path="salle" element={<Salle />} />
+          <Route path="inscription" element={<SignUp />} />
+          <Route path="connexion" element={<SignIn />} />
+          <Route path=":id" element={<Room />} />
         </Routes>
       </div>
       <Copyright sx={{ mt: 8, mb: 4 }}/>
     </>
-
   );
 }

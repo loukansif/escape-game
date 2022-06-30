@@ -6,3 +6,10 @@ export async function getSalles(){
     
       return salleList
 }
+
+export async function getOneSalle(id){
+  const oneSalle = await Salles
+    .findOne({id: id})
+
+    return oneSalle
+}

@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 export default function ButtonAppBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Button color="inherit" href="/">Home</Button>

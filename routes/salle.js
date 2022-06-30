@@ -1,5 +1,5 @@
 import express from 'express'
-import {getSalles} from '../controllers/salle.js'
+import {getSalles, getOneSalle} from '../controllers/salle.js'
 const routerSalle = express.Router()
 routerSalle.use(express.json())
 routerSalle.use(express.urlencoded({ extended: true }))
@@ -9,10 +9,10 @@ routerSalle.get('/', async (req, res) => {
     res.json(salles);
 })
 
-// routerToys.get('/:name', async (req, res) => {
-//     let toyName = await showOneToy(req.params.name)
-//     res.json(toyName)
-// })
+routerSalle.get('/:id', async (req, res) => {
+    let salle = await getOneSalle(req.params._id)
+    res.json(salle)
+})
 
 // routerToys.post('/', async (req, res) => {
 //     const newToy = await createToy(req.body)
