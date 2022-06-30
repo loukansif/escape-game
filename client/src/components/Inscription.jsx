@@ -88,6 +88,17 @@ export default function Inscription() {
                   autoComplete="new-password"
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Confirmer votre mot de passe"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
               {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
