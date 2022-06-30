@@ -4,10 +4,10 @@ import Link from '@mui/material/Link';
 
 export default function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="white" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit" href="https://github.com/loukansif/escape-game/">
-          SLI and SYL
+          SLI & SYL
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}

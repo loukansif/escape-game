@@ -6,6 +6,7 @@ import Home from './components/Home'
 import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import Room from './components/Room'
+import Footer from './components/Footer'
 import Copyright from './components/Copyright'
 
 
@@ -21,7 +22,7 @@ export default function App() {
           <Route path=":id" element={<Room />} />
         </Routes>
       </div>
-      <Copyright sx={{ mt: 8, mb: 4 }}/>
+      <Footer />
     </>
   );
 }

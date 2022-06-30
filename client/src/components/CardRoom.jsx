@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 
 export default function CardRoom(props) {
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 345, margin: 5 }}>
+    <Card sx={{ maxWidth: 345, minWidth: 345, margin: 3 }}>
       <CardMedia
         component="img"
         height="140"

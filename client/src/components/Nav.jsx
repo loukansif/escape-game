@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import img from "../assets/img/logo-escapegame.png"
 
 export default function ButtonAppBar() {
     return (
@@ -13,7 +14,7 @@ export default function ButtonAppBar() {
             <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Button color="inherit" href="/">Home</Button>
+                        <a href="/"><img src={img} className="logoImg"></img> </a> 
                     </Typography>
                     <Button color="inherit" href="/connexion">Connexion</Button>
                     <IconButton
