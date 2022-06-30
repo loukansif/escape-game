@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 
-export default function Salle(props) {
+export default function CardRoom(props) {
   return (
       <Card sx={{ maxWidth: 345, margin: 5 }}>
         <CardMedia

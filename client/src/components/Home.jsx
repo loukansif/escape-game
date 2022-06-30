@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
-import Salle from "./Salle";
+import CardRoom from "./CardRoom";
 
 function Home() {
-  const [salles, setSalles] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
-  const getSalles = () => {
+  const getRooms = () => {
     fetch("http://localhost:5000/salles")
       .then((response) => {
         return response.json();
       })
       .then((result) => {
-        setSalles(result);
+        setRooms(result);
       })
       .catch((error) => console.log(error));
   };
 
 
   useEffect(() => {
-    getSalles();
+    getRooms();
   }, []);
 
   return (
     <>
       <h1 className="title">Bienvenue sur le site de résa Escape Room</h1>
-      {salles.map((salle) => {
-        return <Salle salle={salle} key={salle._id}/>;
+      {rooms.map((salle) => {
+        return <CardRoom salle={salle} key={salle._id}/>;
       })}
     </>
   );
