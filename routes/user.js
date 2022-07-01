@@ -9,8 +9,8 @@ routerUser.get('/', async (req, res) => {
     res.json(users);
 })
 
-routerUser.get('/:id', async (req, res) => {
-    let user = await getOneUser(req.params._id)
+routerUser.get('/:email', async (req, res) => {
+    let user = await getOneUser(req.params.email)
     res.json(user)
 })
 

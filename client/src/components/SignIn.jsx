@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,14 +16,29 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 export default function Connexion() {
+
+  const [form, setForm] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    let email = data.get("email")
+    let pass = data.get("password")
+    setForm({ email, pass })
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    fetch(`http://localhost:5000/users/${email}`)
+      .then((resp) => resp.json())
+      .then((jresponse) => {
+        if (jresponse === null) {
+          alert("Erreur email ou mot de passe")
+        } else pass === jresponse.password ? alert(`bienvenue ${jresponse.firstname}`) : alert("erreur email ou mot de passe")
+      })
   };
+
 
   return (
     <ThemeProvider theme={theme}>
