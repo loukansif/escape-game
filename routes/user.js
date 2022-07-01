@@ -1,5 +1,5 @@
 import express from 'express'
-import {getUsers, getOneUser} from '../controllers/salle.js'
+import {getUsers, getOneUser} from '../controllers/user.js'
 const routerUser = express.Router()
 routerUser.use(express.json())
 routerUser.use(express.urlencoded({ extended: true }))

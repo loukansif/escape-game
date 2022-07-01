@@ -14,10 +14,10 @@ routerSalle.get('/:id', async (req, res) => {
     res.json(salle)
 })
 
-// routerToys.post('/', async (req, res) => {
-//     const newToy = await createToy(req.body)
-//     res.send('ok')
-// })
+routerSalle.post('/', async (req, res) => {
+    const newSalle = await createSalle(req.body)
+    res.send('ok')
+})
 
 // routerToys.put('/:name', async (req, res) => {
 //     console.log(req.params.name);
