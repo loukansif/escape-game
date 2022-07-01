@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import routerSalle from "./routes/salle.js";
+import routerUser from "./routes/user.js";
 dotenv.config({ path: "./config.env" });
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/salles", routerSalle);
+app.use("/users", routerUser)
 
 main().catch((err) => console.error(err));
 async function main() {

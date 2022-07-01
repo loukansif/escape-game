@@ -13,3 +13,4 @@ export async function getOneSalle(id){
 
     return oneSalle
 }
+
