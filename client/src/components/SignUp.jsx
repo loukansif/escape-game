@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,13 +17,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function Inscription() {
+  const [form, setForm] = useState();
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log(data);
+    let firstname = data.get('firstName')
+    let lastname = data.get('lastName')
+    let email = data.get("email")
+    let password = data.get('password')
+    let admin = false
+    setForm({admin, firstname, lastname, email, password})
+
+
   };
 
   return (
@@ -95,7 +102,7 @@ export default function Inscription() {
                   name="password"
                   label="Confirmer votre mot de passe"
                   type="password"
-                  id="password"
+                  id="passwordControl"
                   autoComplete="new-password"
                 />
               </Grid>
