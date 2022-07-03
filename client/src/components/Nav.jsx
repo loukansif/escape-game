@@ -12,7 +12,7 @@ import img from "../assets/img/logo-escapegame.png";
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar sx={{position:"fixed", bgcolor:"#6059bd"}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <a href="/">

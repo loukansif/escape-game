@@ -9,28 +9,30 @@ import { useParams } from "react-router";
 
 
 export default function CardRoom(props) {
-  const useParams = useParams();
+  // const useParams = useParams();
 
   return (
-      <Card sx={{ margin: 5 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={props.salle.img}
-          alt={props.salle.name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.salle.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-          {props.salle.description}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
+      // <Card sx={{ margin: 5 }}>
+      //   <CardMedia
+      //     component="img"
+      //     height="140"
+      //     image={props.salle.img}
+      //     alt={props.salle.name}
+      //   />
+      //   <CardContent>
+      //     <Typography gutterBottom variant="h5" component="div">
+      //       {props.salle.name}
+      //     </Typography>
+      //     <Typography variant="body2" color="text.secondary">
+      //     {props.salle.description}
+      //     </Typography>
+      //   </CardContent>
+      //   <CardActions>
+      //     <Button size="small">Share</Button>
+      //     <Button size="small">Learn More</Button>
+      //   </CardActions>
+      // </Card>
+
+      <div>Roommmmmmmmmmm</div>
   )
 }

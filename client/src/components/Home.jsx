@@ -23,8 +23,8 @@ function Home() {
     <>
       <h1 className="title">Bienvenue sur le site de résa Escape Room</h1>
       <div className="rooms">
-        {rooms.map((salle) => {
-          return <CardRoom salle={salle} key={salle._id} />;
+        {rooms.map((room) => {
+          return <CardRoom room={room} key={room._id} />;
         })}
       </div>
     </>
