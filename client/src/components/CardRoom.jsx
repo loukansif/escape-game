@@ -50,7 +50,9 @@ export default function CardRoom(props) {
         }}
       >
         <div>
-          <Button size="small">Détail</Button>
+          <Button href={"/" + props.room._id} size="small">
+            Détail
+          </Button>
           <Button size="small">Réserver</Button>
         </div>
         <img src={img} alt={"image"} className="imgPegi" />

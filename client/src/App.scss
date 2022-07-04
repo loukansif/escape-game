@@ -17,6 +17,32 @@
     justify-content: center;
 }
 
+.room {
+  width: 70%;
+  margin: 106px auto;
+}
+
+.room .MuiCardMedia-root {
+  height: 470px;
+}
+
+@media (max-width: 992px) {
+  .room .MuiCardMedia-root {
+    height: 260px;
+  }
+}
+
+@media (max-width: 500px) {
+  .room .MuiCardMedia-root {
+    height: 160px;
+  }
+  .room {
+    width: 90%;
+    margin: 78px auto;
+  }
+}
+
+
 .logoImg {
     width: 110px;
 }

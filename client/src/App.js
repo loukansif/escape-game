@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="inscription" element={<SignUp />} />
           <Route path="connexion" element={<SignIn />} />
-          <Route path="room" element={<Room />} />
+          <Route path="/:id" element={<Room />} />
         </Routes>
       </div>
       <Footer />
