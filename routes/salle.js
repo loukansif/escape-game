@@ -9,7 +9,7 @@ routerSalle.get('/', async (req, res) => {
     res.json(salles);
 })
 
-routerSalle.get('/:id', async (req, res) => {
+routerSalle.get('/:_id', async (req, res) => {
     let salle = await getOneSalle(req.params._id)
     res.json(salle)
 })
