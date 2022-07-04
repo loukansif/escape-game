@@ -16,7 +16,7 @@ export async function getOneUser(email){
 
 export async function createUser(userData){
     
-    const User = await new User(userData)
+    const User = new Users(userData)
    
     const result = await User.save()
     
