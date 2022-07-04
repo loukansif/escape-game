@@ -16,8 +16,8 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="inscription" element={<SignUp />} />
-          <Route path="connexion" element={<SignIn />} />
+          <Route path="/inscription" element={<SignUp />} />
+          <Route path="/connexion" element={<SignIn />} />
           <Route path="/:id" element={<Room />} />
         </Routes>
       </div>
