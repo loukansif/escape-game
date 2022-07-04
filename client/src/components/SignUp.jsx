@@ -3,41 +3,55 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 const theme = createTheme();
 
 export default function Inscription() {
-  const [form, setForm] = useState();
+  const [value, setValue] = useState(null);
+  const [form, setForm] = useState({
+    admin: false,
+    firstname: "",
+    lastname: "",
+    email: "",
+    birthday: "",
+    password: ""
+  });
+
+  // These methods will update the state properties.
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data);
-    let firstname = data.get('firstName')
-    let lastname = data.get('lastName')
-    let email = data.get("email")
     let password = data.get('password')
     let passwordControl = data.get('passwordControl')
-    let admin = false
+    // let admin = false
+    console.log("pass 1 " + password + " pass2 " + passwordControl)
     if (password === passwordControl) {
-      setForm({ admin, firstname, lastname, email, password });
-      let newSalle = { ...form };
-      await fetch("http://localhost:5000/users/", {
+      let newUser = { ...form };
+      fetch("http://localhost:5000/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newToy),
+        body: JSON.stringify(newUser),
+      }).then(() => {
+        alert("vous etes enregistré")
       })
         .catch(error => {
           window.alert(error);
@@ -77,6 +91,7 @@ export default function Inscription() {
                   fullWidth
                   id="firstName"
                   label="Prénom"
+                  onChange={(e) => updateForm({ firstname: e.target.value })}
                   autoFocus
                 />
               </Grid>
@@ -87,6 +102,7 @@ export default function Inscription() {
                   id="lastName"
                   label="Nom"
                   name="lastName"
+                  onChange={(e) => updateForm({ lastname: e.target.value })}
                   autoComplete="family-name"
                 />
               </Grid>
@@ -97,8 +113,21 @@ export default function Inscription() {
                   id="email"
                   label="Email"
                   name="email"
+                  onChange={(e) => updateForm({ email: e.target.value })}
                   autoComplete="email"
                 />
+              </Grid>
+              <Grid item xs={12}>
+                Date de naissance
+              <TextField
+                required
+                fullWidth
+                id="birthday"
+                name="birthday"
+                type="date"
+                onChange={(e) => updateForm({ birthday: e.target.value })}
+                autoComplete=""
+      />
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -108,6 +137,7 @@ export default function Inscription() {
                   label="Mot de passe"
                   type="password"
                   id="password"
+                  onChange={(e) => updateForm({ password: e.target.value })}
                   autoComplete="new-password"
                 />
               </Grid>
@@ -115,19 +145,13 @@ export default function Inscription() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
+                  name="passwordControl"
                   label="Confirmer votre mot de passe"
                   type="password"
                   id="passwordControl"
                   autoComplete="new-password"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
