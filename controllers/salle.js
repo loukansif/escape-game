@@ -7,9 +7,10 @@ export async function getSalles(){
       return salleList
 }
 
-export async function getOneSalle(id){
+export async function getOneSalle(_id){
   const oneSalle = await Salles
-    .findOne({_id: id})
+    .findOne({_id: _id})
+
     return oneSalle
 }
 

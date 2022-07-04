@@ -18,7 +18,7 @@ const theme = createTheme();
 
 export default function Inscription() {
   const [form, setForm] = useState();
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,10 +27,26 @@ export default function Inscription() {
     let lastname = data.get('lastName')
     let email = data.get("email")
     let password = data.get('password')
+    let passwordControl = data.get('passwordControl')
     let admin = false
-    setForm({admin, firstname, lastname, email, password})
-
-
+    if (password === passwordControl) {
+      setForm({ admin, firstname, lastname, email, password });
+      let newSalle = { ...form };
+      await fetch("http://localhost:5000/users/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newToy),
+      })
+        .catch(error => {
+          window.alert(error);
+          return;
+        });
+      setForm({})
+    } else {
+      alert("les mots de passe ne sont pas identiques")
+    }
   };
 
   return (
