@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -18,7 +16,6 @@ const theme = createTheme();
 
 export default function Connexion() {
   let navigate = useNavigate();
-  const [form, setForm] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,7 +23,6 @@ export default function Connexion() {
     const data = new FormData(event.currentTarget);
     let email = data.get("email")
     let pass = data.get("password")
-    setForm({ email, pass })
     console.log({
       email: data.get("email"),
       password: data.get("password"),
@@ -41,6 +37,7 @@ export default function Connexion() {
           localStorage.setItem("userLastName", jresponse.lastname)
           localStorage.setItem("userFirtsName", jresponse.firstname)
           localStorage.setItem("userEmail", jresponse.email)
+          localStorage.setItem("userAdmin", jresponse.admin)
           localStorage.setItem("userIsLogged", true)
           navigate("/",{replace: true})
           window.location.reload()

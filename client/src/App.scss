@@ -19,6 +19,16 @@
 .room {
   width: 70%;
   margin: 106px auto;
+
+  .dispo {
+    color: black;
+    background-color: green;
+  }
+
+  .notDispo {
+    color: black;
+    background-color: red;
+  }
 }
 
 .room .MuiCardMedia-root {
@@ -68,9 +78,9 @@ table {
 @media (max-width: 685px) {
   table {
     display: flex;
-      text-align: center;
-      flex-direction: column;
-      align-items: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
