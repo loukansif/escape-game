@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,11 +17,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme();
 
 export default function Connexion() {
-
+  let navigate = useNavigate();
   const [form, setForm] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     let email = data.get("email")
     let pass = data.get("password")
@@ -35,7 +37,16 @@ export default function Connexion() {
       .then((jresponse) => {
         if (jresponse === null) {
           alert("Erreur email ou mot de passe")
-        } else pass === jresponse.password ? alert(`bienvenue ${jresponse.firstname}`) : alert("erreur email ou mot de passe")
+        } else if (pass === jresponse.password) {
+          localStorage.setItem("userLastName", jresponse.lastname)
+          localStorage.setItem("userFirtsName", jresponse.firstname)
+          localStorage.setItem("userEmail", jresponse.email)
+          localStorage.setItem("userIsLogged", true)
+          navigate("/",{replace: true})
+          window.location.reload()
+        } else {
+          alert("erreur email ou mot de passe")
+        }
       })
   };
 

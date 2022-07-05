@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import * as React from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +9,25 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import img from "../assets/img/logo-escapegame.png";
 
+
 export default function ButtonAppBar() {
+
+  const deconnect = () => {
+    localStorage.setItem("userLastName", "")
+    localStorage.setItem("userFirtsName", "")
+    localStorage.setItem("userEmail", "")
+    localStorage.setItem("userIsLogged", "")
+    window.location.reload()
+  }
+
+  // let userIsconnect = sessionStorage.getItem('userIsLogged')
+  // let connect
+  // if(userIsconnect != null){
+  //   connect = true
+  //   }else{
+  //     connect = false
+  //   }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -19,10 +37,20 @@ export default function ButtonAppBar() {
               <img src={img} className="logoImg"></img>{" "}
             </a>
           </Typography>
-          <Button color="inherit" href="/connexion">
-            Connexion
-          </Button>
-          <IconButton
+          {localStorage.getItem('userIsLogged') ?
+            <>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <p>Bonjour {localStorage.getItem('userFirtsName')}</p>
+              </Typography>
+              <Button color="inherit" onClick={deconnect}>
+                Déconnexion
+              </Button>
+            </>
+
+            : <Button color="inherit" href="/connexion">
+              Connexion
+            </Button>}
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -30,7 +58,7 @@ export default function ButtonAppBar() {
             sx={{ mr: 2, marginLeft: 1 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
     </Box>
