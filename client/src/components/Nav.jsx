@@ -17,6 +17,7 @@ export default function ButtonAppBar() {
     localStorage.setItem("userFirtsName", "")
     localStorage.setItem("userEmail", "")
     localStorage.setItem("userIsLogged", "")
+    localStorage.setItem("userAdmin", "")
     window.location.reload()
   }
 

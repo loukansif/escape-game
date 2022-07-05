@@ -88,20 +88,20 @@ export default function Room() {
                   <>
                     {dDay && index === 0 ? (
                       <tr>
-                        <a href="www.google.fr" style={{ color: "black", backgroundColor: "green" }}>Matin</a>
+                        <a href="www.google.fr" className="dispo">Matin</a>
                       </tr>
                     ) : null}
                     {!dDay && index === 0 ? (
                       <tr>
-                        <a style={{ color: "black", backgroundColor: "red" }}>Matin</a></tr>
+                        <a className="notDispo">Matin</a></tr>
                     ) : null}
                     {dDay && index === 1 ? (
                       <tr>
-                        <a href="www.google.fr" style={{ color: "black", backgroundColor: "green" }}>Aprèm</a></tr>
+                        <a href="www.google.fr" className="dispo">Aprèm</a></tr>
                     ) : null}
                     {!dDay && index === 1 ? (
                       <tr>
-                        <a style={{ color: "black", backgroundColor: "red" }}>Aprèm</a></tr>
+                        <a className="notDispo">Aprèm</a></tr>
                     ) : null}
                   </>
                 );

@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from "react";
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import React, { useState } from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
 export default function Inscription() {
-  const [value, setValue] = useState(null);
   const [form, setForm] = useState({
     admin: false,
     firstname: "",
     lastname: "",
     email: "",
     birthday: "",
-    password: ""
+    password: "",
   });
 
   // These methods will update the state properties.
@@ -34,14 +29,13 @@ export default function Inscription() {
     });
   }
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let password = data.get('password')
-    let passwordControl = data.get('passwordControl')
+    let password = data.get("password");
+    let passwordControl = data.get("passwordControl");
     // let admin = false
-    console.log("pass 1 " + password + " pass2 " + passwordControl)
+    console.log("pass 1 " + password + " pass2 " + passwordControl);
     if (password === passwordControl) {
       let newUser = { ...form };
       fetch("http://localhost:5000/users/", {
@@ -50,16 +44,17 @@ export default function Inscription() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newUser),
-      }).then(() => {
-        alert("vous etes enregistré")
       })
-        .catch(error => {
+        .then(() => {
+          alert("vous etes enregistré");
+        })
+        .catch((error) => {
           window.alert(error);
           return;
         });
-      setForm({})
+      setForm({});
     } else {
-      alert("les mots de passe ne sont pas identiques")
+      alert("les mots de passe ne sont pas identiques");
     }
   };
 
@@ -70,19 +65,36 @@ export default function Inscription() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Inscription
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
+              {localStorage.getItem("userAdmin") == "true" ? (
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="admin"
+                      label="Admin"
+                      name="admin"
+                      onChange={(e) => updateForm({ admin: e.target.value })}
+                    />
+                  </Grid>
+              ) : null}
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -119,15 +131,15 @@ export default function Inscription() {
               </Grid>
               <Grid item xs={12}>
                 Date de naissance
-              <TextField
-                required
-                fullWidth
-                id="birthday"
-                name="birthday"
-                type="date"
-                onChange={(e) => updateForm({ birthday: e.target.value })}
-                autoComplete=""
-      />
+                <TextField
+                  required
+                  fullWidth
+                  id="birthday"
+                  name="birthday"
+                  type="date"
+                  onChange={(e) => updateForm({ birthday: e.target.value })}
+                  autoComplete=""
+                />
               </Grid>
               <Grid item xs={12}>
                 <TextField
