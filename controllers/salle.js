@@ -9,8 +9,7 @@ export async function getSalles(){
 
 export async function getOneSalle(id){
   const oneSalle = await Salles
-    .findOne({id: id})
-
+    .findOne({_id: id})
     return oneSalle
 }
 

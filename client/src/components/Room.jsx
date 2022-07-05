@@ -1,15 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
@@ -21,7 +16,6 @@ import pegi18 from "../assets/img/pegi-18.png";
 export default function Room() {
   const [room, setRoom] = useState([]);
   const { id } = useParams();
-  let i=0;
 
   const getOneSalle = () => {
     fetch(`http://localhost:5000/salles/${id}`)
@@ -54,6 +48,16 @@ export default function Room() {
       break;
   }
 
+  let days = [
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+    "Dimanche",
+  ];
+
   return (
     <Card className="room">
       <div className="roomImg">
@@ -74,45 +78,38 @@ export default function Room() {
         </Typography>
       </CardContent>
 
-      {/* <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Lundi</TableCell>
-            <TableCell>Mardi</TableCell>
-            <TableCell>Mercredi</TableCell>
-            <TableCell>Jeudi</TableCell>
-            <TableCell>Vendredi</TableCell>
-            <TableCell>Samedi</TableCell>
-            <TableCell>Dimanche</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {room.dispo.map((row) => (
-            <TableRow
-              key={room._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{room.dispo}</TableCell>
-            </TableRow>
-           ))}
-        </TableBody>
-      </Table>
-    </TableContainer> */}
-      <div>
-        {room.dispo?.map((day) => {
-          return day.map(() => {
-            i++;
-            return <p key={i}>dsds</p>;
-          });
+      <table>
+        {room.dispo?.map((day, index) => {
+          return (
+            <td key={index}>
+              <tr key={index}>{days[index]}</tr>
+              {day.map((dDay, index) => {
+                return (
+                  <>
+                    {dDay && index === 0 ? (
+                      <tr>
+                        <a href="www.google.fr" style={{ color: "black", backgroundColor: "green" }}>Matin</a>
+                      </tr>
+                    ) : null}
+                    {!dDay && index === 0 ? (
+                      <tr>
+                        <a style={{ color: "black", backgroundColor: "red" }}>Matin</a></tr>
+                    ) : null}
+                    {dDay && index === 1 ? (
+                      <tr>
+                        <a href="www.google.fr" style={{ color: "black", backgroundColor: "green" }}>Aprèm</a></tr>
+                    ) : null}
+                    {!dDay && index === 1 ? (
+                      <tr>
+                        <a style={{ color: "black", backgroundColor: "red" }}>Aprèm</a></tr>
+                    ) : null}
+                  </>
+                );
+              })}
+            </td>
+          );
         })}
-      </div>
+      </table>
       <CardActions>
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
