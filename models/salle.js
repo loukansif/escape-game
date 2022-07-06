@@ -6,8 +6,9 @@ const salleSchema = new mongoose.Schema({
   capacity: Number,
   img: String,
   description: String,
-  price: Number
-
+  price: Number,
+  dispo: Array,
+  minplayers: Number
 })
 
 const Salles = mongoose.model('salles', salleSchema);

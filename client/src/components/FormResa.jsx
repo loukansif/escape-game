@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 
 const theme = createTheme();
+let btnActive = false;
 
 function FormResa(props) {
     const nbPlayers = props.nbPlayers;
@@ -101,6 +102,7 @@ function handleSubmit() {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
+                                disabled={!btnActive}
                             >
                                 Réserver
                             </Button>

@@ -14,3 +14,11 @@ export async function getOneSalle(_id){
     return oneSalle
 }
 
+export async function updateSalle(_id){
+  const upSalle = await Salles
+    .updateOne({_id: _id})
+
+    return upSalle
+}
+
+

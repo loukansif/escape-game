@@ -1,5 +1,5 @@
 import express from 'express'
-import {getSalles, getOneSalle} from '../controllers/salle.js'
+import {getSalles, getOneSalle, updateSalle} from '../controllers/salle.js'
 const routerSalle = express.Router()
 routerSalle.use(express.json())
 routerSalle.use(express.urlencoded({ extended: true }))
@@ -19,11 +19,10 @@ routerSalle.post('/', async (req, res) => {
     res.send('ok')
 })
 
-// routerToys.put('/:name', async (req, res) => {
-//     console.log(req.params.name);
-//     let updateOneToy = await updateToy(req.params.name,req.body)
-//     res.send(updateOneToy)
-//         });
+routerSalle.put('/:id', async (req, res) => {
+    let updateSalle = await updateSalle(req.params.id,req.body)
+    res.send(updateSalle)
+        });
 
 
 // routerToys.delete('/:id', function (req, res) {
