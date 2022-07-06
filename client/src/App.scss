@@ -20,14 +20,8 @@
   width: 70%;
   margin: 106px auto;
 
-  .dispo {
-    color: black;
-    background-color: green;
-  }
-
-  .notDispo {
-    color: black;
-    background-color: red;
+  .btn-dispo, .dispo, .notDispo {
+    width: 70px;
   }
 }
 

@@ -77,31 +77,42 @@ export default function Room() {
           {room.description}
         </Typography>
       </CardContent>
-
+      <h4>Disponibilité</h4>
       <table>
         {room.dispo?.map((day, index) => {
           return (
             <td key={index}>
-              <tr key={index}>{days[index]}</tr>
+              <th key={index}>{days[index]}</th>
               {day.map((dDay, index) => {
                 return (
                   <>
                     {dDay && index === 0 ? (
                       <tr>
-                        <a href="www.google.fr" className="dispo">Matin</a>
+                        <Button className="btn-dispo" variant="contained" color="success" size="small" href="www.google.fr">
+                          Matin
+                        </Button>
                       </tr>
                     ) : null}
                     {!dDay && index === 0 ? (
                       <tr>
-                        <a className="notDispo">Matin</a></tr>
+                        <Button className="btn-dispo" variant="contained" size="small" href="www.google.fr" disabled>
+                          Matin
+                        </Button>
+                      </tr>
                     ) : null}
                     {dDay && index === 1 ? (
                       <tr>
-                        <a href="www.google.fr" className="dispo">Aprèm</a></tr>
+                        <Button className="btn-dispo" variant="contained" color="success" size="small" href="www.google.fr">
+                          Aprèm
+                        </Button>
+                      </tr>
                     ) : null}
                     {!dDay && index === 1 ? (
                       <tr>
-                        <a className="notDispo">Aprèm</a></tr>
+                        <Button className="btn-dispo" variant="contained" size="small" href="www.google.fr" disabled>
+                          Aprèm
+                        </Button>
+                      </tr>
                     ) : null}
                   </>
                 );
@@ -111,8 +122,8 @@ export default function Room() {
         })}
       </table>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" href="/">Retour</Button>
+        {/* <Button size="small">Learn More</Button> */}
       </CardActions>
     </Card>
   );
