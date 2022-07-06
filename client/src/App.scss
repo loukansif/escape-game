@@ -24,14 +24,9 @@ span {
   width: 70%;
   margin: 106px auto;
 
-  .dispo {
-    color: black;
-    background-color: green;
-  }
-
-  .notDispo {
-    color: black;
-    background-color: red;
+  .btn-dispo {
+    width: 70px;
+    margin-bottom: 2px;
   }
 }
 

@@ -41,16 +41,19 @@ export default function ButtonAppBar() {
           {localStorage.getItem('userIsLogged') ?
             <>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <p>Bonjour {localStorage.getItem('userFirtsName')}</p>
+                <p>Bonjour {localStorage.getItem('userFirtsName')}</p>
               </Typography>
+              <Button color="error" href="/historique">
+                Historique
+              </Button>
               <Button color="inherit" onClick={deconnect}>
                 Déconnexion
               </Button>
             </>
 
-            : <Button color="inherit" href="/connexion">
-              Connexion
-            </Button>}
+            :  <Button color="inherit" href="/connexion">
+                Connexion
+              </Button>}
           {/* <IconButton
             size="large"
             edge="start"
