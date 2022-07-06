@@ -83,7 +83,7 @@ export default function Inscription() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              {localStorage.getItem("userAdmin") == "true" ? (
+              {localStorage.getItem("userAdmin") === "true" ? (
                   <Grid item xs={12}>
                     <TextField
                       required

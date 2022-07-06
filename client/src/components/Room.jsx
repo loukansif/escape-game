@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,6 +13,7 @@ import pegi3 from "../assets/img/pegi-3.png";
 import pegi7 from "../assets/img/pegi-7.png";
 import pegi16 from "../assets/img/pegi-16.png";
 import pegi18 from "../assets/img/pegi-18.png";
+
 
 export default function Room() {
   const [room, setRoom] = useState([]);
@@ -79,27 +81,27 @@ export default function Room() {
       </CardContent>
 
       <table>
-        {room.dispo?.map((day, index) => {
+        {room.dispo?.map((day, indexDay) => {
           return (
-            <td key={index}>
-              <tr key={index}>{days[index]}</tr>
-              {day.map((dDay, index) => {
+            <td key={indexDay}>
+              <th key={indexDay}>{days[indexDay]}</th>
+              {day.map((dDay, indexDDay) => {
                 return (
                   <>
-                    {dDay && index === 0 ? (
+                    {dDay && indexDDay === 0 ? (
                       <tr>
-                        <a href="www.google.fr" className="dispo">Matin</a>
+                        <a href={"/reservation/" + room._id + indexDay + indexDDay} className="dispo">Matin</a>
                       </tr>
                     ) : null}
-                    {!dDay && index === 0 ? (
+                    {!dDay && indexDDay === 0 ? (
                       <tr>
                         <a className="notDispo">Matin</a></tr>
                     ) : null}
-                    {dDay && index === 1 ? (
+                    {dDay && indexDDay === 1 ? (
                       <tr>
-                        <a href="www.google.fr" className="dispo">Aprèm</a></tr>
+                        <a href={"/reservation/" + room._id + indexDay + indexDDay} className="dispo">Aprèm</a></tr>
                     ) : null}
-                    {!dDay && index === 1 ? (
+                    {!dDay && indexDDay === 1 ? (
                       <tr>
                         <a className="notDispo">Aprèm</a></tr>
                     ) : null}
