@@ -10,12 +10,12 @@ import pegi3 from "../assets/img/pegi-3.png";
 import pegi7 from "../assets/img/pegi-7.png";
 import pegi16 from "../assets/img/pegi-16.png";
 import pegi18 from "../assets/img/pegi-18.png";
-import FormResa from './FormResa';
+import SelectNbPlayers from './SelectNbPlayers'
 const theme = createTheme();
 
 function Reservation() {
     const [room, setRoom] = useState([]);
-    const [minPlayers, setMinPlayers] = useState([]);
+    // const [minPlayers, setMinPlayers] = useState([]);
     const paramResa = useParams()
     let days = [
         "Lundi",
@@ -43,7 +43,7 @@ function Reservation() {
     }
 
     // pour pouvoir créer les champs d'insription en fonction du nombre minimum de participants
-    
+
 
 
     const getOneSalle = () => {
@@ -86,8 +86,8 @@ function Reservation() {
                     <Typography gutterBottom variant="h5" component="div">
                         <p>Le nombre de participants doit être compris entre: <span>{room.minplayers} et {room.capacity}</span> </p>
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        <FormResa roomMinPlayers={room.minplayers} maxPlayers={room.capacity}/>
+                    <Typography component="h1" variant="h5" sx={{ mt: 3, mb: 2 }}>
+                        <SelectNbPlayers minPlayers={room.minplayers} maxPlayers={room.capacity} />
                     </Typography>
 
                 </CardContent>

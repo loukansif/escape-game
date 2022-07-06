@@ -9,12 +9,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+
 const theme = createTheme();
 
 function FormResa(props) {
-    const test = props.roomMinPlayers;
+    const nbPlayers = props.nbPlayers;
+   
     let arrayPalyers =[]
-    for (let index = 0; index < test; index++) {
+    for (let index = 0; index < nbPlayers; index++) {
         arrayPalyers.push( <Grid container spacing={2}>
             <Grid item xs={12} sm={4}>
                 <TextField
@@ -54,7 +56,23 @@ function FormResa(props) {
         </Grid>)
     }    
 
-
+function handleSubmit() {
+    let newReservation ;
+    fetch("http://localhost:5000/reservations/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newReservation),
+      })
+        .then(() => {
+          alert("vous etes enregistré");
+        })
+        .catch((error) => {
+          window.alert(error);
+          return;
+        });
+}
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -74,18 +92,10 @@ function FormResa(props) {
                         <Box
                             component="form"
                             noValidate
-                            // onSubmit={handleSubmit}
+                            onSubmit={handleSubmit}
                             sx={{ mt: 3 }}
-                        >
-                         
+                        >    
                           {arrayPalyers}
-                          <Button
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                // onclick={}
-                            >
-                                Ajouter un participant
-                            </Button>
                             <Button
                                 type="submit"
                                 fullWidth

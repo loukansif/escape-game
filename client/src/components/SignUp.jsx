@@ -34,8 +34,7 @@ export default function Inscription() {
     const data = new FormData(event.currentTarget);
     let password = data.get("password");
     let passwordControl = data.get("passwordControl");
-    // let admin = false
-    console.log("pass 1 " + password + " pass2 " + passwordControl);
+   
     if (password === passwordControl) {
       let newUser = { ...form };
       fetch("http://localhost:5000/users/", {
