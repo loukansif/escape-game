@@ -95,7 +95,7 @@ export default function Room() {
                     ) : null}
                     {!dDay && index === 0 ? (
                       <tr>
-                        <Button className="btn-dispo" variant="contained" size="small" href="www.google.fr" disabled>
+                        <Button className="btn-dispo" variant="contained" size="small" disabled>
                           Matin
                         </Button>
                       </tr>
@@ -109,7 +109,7 @@ export default function Room() {
                     ) : null}
                     {!dDay && index === 1 ? (
                       <tr>
-                        <Button className="btn-dispo" variant="contained" size="small" href="www.google.fr" disabled>
+                        <Button className="btn-dispo" variant="contained" size="small" disabled>
                           Aprèm
                         </Button>
                       </tr>
