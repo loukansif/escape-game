@@ -16,9 +16,9 @@ let btnActive = false;
 function FormResa(props) {
     const nbPlayers = props.nbPlayers;
    
-    let arrayPalyers =[]
+    let arrayPlayers =[]
     for (let index = 0; index < nbPlayers; index++) {
-        arrayPalyers.push( <Grid container spacing={2}>
+        arrayPlayers.push( <Grid container spacing={2}>
             <Grid item xs={12} sm={4}>
                 <TextField
                     autoComplete="given-name"
@@ -96,7 +96,7 @@ function handleSubmit() {
                             onSubmit={handleSubmit}
                             sx={{ mt: 3 }}
                         >    
-                          {arrayPalyers}
+                          {arrayPlayers}
                             <Button
                                 type="submit"
                                 fullWidth
