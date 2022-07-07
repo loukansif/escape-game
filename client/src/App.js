@@ -7,6 +7,7 @@ import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import Room from './components/Room'
 import Reservation from "./components/Reservation";
+import HistoResa from "./components/HistoResa";
 import Footer from './components/Footer'
 
 
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/connexion" element={<SignIn />} />
           <Route path="/:id" element={<Room />} />
           <Route path="/reservation/:id:indexDay:indexDDay" element={<Reservation />} />
+          <Route path="/historique" element={<HistoResa />} />
         </Routes>
       </div>
       <Footer />

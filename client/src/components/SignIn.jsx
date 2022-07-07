@@ -34,6 +34,7 @@ export default function Connexion() {
         if (jresponse === null) {
           alert("Erreur email ou mot de passe")
         } else if (pass === jresponse.password) {
+          localStorage.setItem("userId", jresponse._id)
           localStorage.setItem("userLastName", jresponse.lastname)
           localStorage.setItem("userFirtsName", jresponse.firstname)
           localStorage.setItem("userEmail", jresponse.email)
