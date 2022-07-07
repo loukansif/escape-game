@@ -37,8 +37,6 @@ export default function HistoResa() {
                 {histo.map((oneresa) => {
                     if (localStorage.getItem('userId') == oneresa.iduser) {
                         return <CardHisto oneresa={oneresa} key={oneresa._id} />;
-                   }else {
-                     return <p>Vous n'avez jamais réservé !</p>
                    }
                 })}
             </div>

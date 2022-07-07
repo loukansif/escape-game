@@ -37,7 +37,7 @@ export default function SelectNbPlayers(props) {
             </FormControl>
         </Box>
             <Typography variant="body2" color="text.secondary">
-                <FormResa nbPlayers={nbPlayers} />
+                <FormResa nbPlayers={nbPlayers} roomname={props.roomname}/>
             </Typography>
         </>
 

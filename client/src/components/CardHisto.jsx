@@ -10,11 +10,16 @@ export default function CardRoom(props) {
      
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.oneresa._id}
+          {props.oneresa.idRoom}
         </Typography>
         {props.oneresa.players.map((element)=>
             <Typography gutterBottom variant="h5" component="div">
-                <p>{element.firstname}</p>
+                <p>{element['00']}</p>
+                <p>{element['01']}</p>
+                <p>{element['11']}</p>
+                <p>{element['10']}</p>
+                <p>{element['20']}</p>
+                
             {console.log(element)}
           </Typography>
         )}

@@ -11,23 +11,30 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 
 const theme = createTheme();
-let btnActive = false;
+let btnActive = true;
 
 function FormResa(props) {
     const nbPlayers = props.nbPlayers;
+    const [form, setForm] = useState([]);
+    
+        function updatePlayers(event) {
+            let newForm = form
+            newForm[event.target.name]  = event.target.value
+            setForm({...newForm})
+        }
+   
    
     let arrayPlayers =[]
     for (let index = 0; index < nbPlayers; index++) {
-        arrayPlayers.push( <Grid container spacing={2}>
+        arrayPlayers.push( <Grid container spacing={2} id={index} onBlur={updatePlayers}>
             <Grid item xs={12} sm={4}>
                 <TextField
                     autoComplete="given-name"
-                    name="firstName"
+                    name={index + "0"}
                     required
                     fullWidth
-                    id="firstName"
                     label="Prénom"
-                    // onChange={(e) => updateForm({ firstname: e.target.value })}
+                    //onBlur={updatePlayers}
                     autoFocus
                 />
             </Grid>
@@ -35,10 +42,9 @@ function FormResa(props) {
                 <TextField
                     required
                     fullWidth
-                    id="lastName"
                     label="Nom"
-                    name="lastName"
-                    // onChange={(e) => updateForm({ lastname: e.target.value })}
+                    name={index +"1"}
+                    //onBlur={updatePlayers}
                     autoComplete="family-name"
                 />
             </Grid>
@@ -47,24 +53,27 @@ function FormResa(props) {
                     required
                     helperText="Date de naissance du participant"
                     fullWidth
-                    id="birthday"
-                    name="birthday"
+                    name={index + "2" }
                     type="date"
-                    // onChange={(e) => updateForm({ birthday: e.target.value })}
+                    //onBlur={updatePlayers}
                     autoComplete=""
                 />
             </Grid>
         </Grid>)
     }    
 
-function handleSubmit() {
-    let newReservation ;
+    function handleSubmit(event) {
+    event.preventDefault()
+    let players = {idRoom:props.roomname,iduser:localStorage.getItem('userId'),players:form};
+    players = {...players}
+    console.log(players);
+   // let players = [ newReservation.slice(0,2) ]
     fetch("http://localhost:5000/reservations/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newReservation),
+        body: JSON.stringify(players),
       })
         .then(() => {
           alert("vous etes enregistré");

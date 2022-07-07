@@ -87,7 +87,7 @@ function Reservation() {
                         <p>Le nombre de participants doit être compris entre: <span>{room.minplayers} et {room.capacity}</span> </p>
                     </Typography>
                     <Typography component="h1" variant="h5" sx={{ mt: 3, mb: 2 }}>
-                        <SelectNbPlayers minPlayers={room.minplayers} maxPlayers={room.capacity} />
+                        <SelectNbPlayers minPlayers={room.minplayers} maxPlayers={room.capacity} roomname={room.name}/>
                     </Typography>
 
                 </CardContent>
