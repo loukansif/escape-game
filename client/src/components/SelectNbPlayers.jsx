@@ -9,7 +9,7 @@ import FormResa from "./FormResa"
 
 
 export default function SelectNbPlayers(props) {
-    const [nbPlayers, setNbPlayers] = useState(4)
+    const [nbPlayers, setNbPlayers] = useState()
     const min = props.minPlayers;
     const max = props.maxPlayers;
 

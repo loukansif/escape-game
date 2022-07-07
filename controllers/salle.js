@@ -14,9 +14,9 @@ export async function getOneSalle(_id){
     return oneSalle
 }
 
-export async function updateSalle(_id){
+export async function updateSalle(_id, body){
   const upSalle = await Salles
-    .updateOne({_id: _id})
+    .findOneAndUpdate({_id: _id},{...body})
 
     return upSalle
 }

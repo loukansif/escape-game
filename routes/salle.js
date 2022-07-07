@@ -19,9 +19,9 @@ routerSalle.post('/', async (req, res) => {
     res.send('ok')
 })
 
-routerSalle.put('/:id', async (req, res) => {
-    let updateSalle = await updateSalle(req.params.id,req.body)
-    res.send(updateSalle)
+routerSalle.put('/:_id', async (req, res) => {
+    let upSalle = await updateSalle(req.params._id,req.body)
+    res.send(upSalle)
         });
 
 
