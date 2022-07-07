@@ -19,14 +19,14 @@ routerReservation.post('/', async (req, res) => {
     res.send('ok')
 })
 
-// routerToys.put('/:name', async (req, res) => {
+// routerReservation.put('/:name', async (req, res) => {
 //     console.log(req.params.name);
 //     let updateOneToy = await updateToy(req.params.name,req.body)
 //     res.send(updateOneToy)
 //         });
 
 
-// routerToys.delete('/:id', function (req, res) {
+// routerReservation.delete('/:id', function (req, res) {
 //     let deletOne= deleteOneToy(req.params.id)
 // })
 export default routerReservation

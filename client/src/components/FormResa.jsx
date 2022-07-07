@@ -16,7 +16,9 @@ let nbMaxPlayers = 0;
 function FormResa(props) {
   const [btnSend, setBtnSend] = useState(true);
   const [btnAdd, setBtnAdd] = useState(true);
-  
+  let dispo = props.dispo;
+  let idRoom = props.idRoom;
+
   let form = {
     firstName: "",
     lastName: "",
@@ -29,59 +31,76 @@ function FormResa(props) {
   }
 
   function addPlayer() {
+    dispo[props.indexDay][props.indexDDay] = false;
     players.push({ ...form });
     nbMinPlayers++;
     nbMaxPlayers++;
-    // if (nbMinPlayers == props.minPlayers) {    
-    //   setBtnSend(!btnSend);
-    //   console.log("btnSend ok");
-    // }
     if (nbMaxPlayers == props.maxPlayers) {
       setBtnAdd(!btnAdd);
       console.log("btnAdd ok");
     }
     console.log(players);
+    console.log(dispo);
+  }
+  function handleRoomDispo() {
+   
+    // fetch(`http://localhost:5000/salles/${idRoom}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(dispo),
+    // })
+    //   .then(() => {
+    //     alert("Salle mise à jour");
+    //   })
+    //   .catch((error) => {
+    //     window.alert(error);
+    //     return;
+    //   });
+
+    fetch(`http://localhost:5000/salles/${idRoom}`, {
+      method: 'put',
+      body: JSON.stringify(dispo),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(()=>console.log('updated!!!'))
+      .catch((error) => {
+            window.alert(error);
+            return;
+          });
+    
   }
 
-//   function handleSubmit() {
-//     let newReservation;
-//     fetch("http://localhost:5000/reservations/", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(newReservation),
-//     })
-//       .then(() => {
-//         alert("vous etes enregistré");
-//       })
-//       .catch((error) => {
-//         window.alert(error);
-//         return;
-//       });
-//   }
-
   function handleSubmit(event) {
-    event.preventDefault()
-    // let players = {idRoom:props.roomname,iduser:localStorage.getItem('userId'),players:form};
-    // players = {...players}
-    // console.log(players);
-   // let players = [ newReservation.slice(0,2) ]
+    event.preventDefault();
+    let data = {
+      nameRoom: props.nameRoom,
+      idUser: localStorage.getItem("id"),
+      dayReservation: new Date(),
+      players: players,
+    };
     fetch("http://localhost:5000/reservations/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(players),
-      })
-        .then(() => {
-          alert("vous etes enregistré");
-        })
-        .catch((error) => {
-          window.alert(error);
-          return;
-        });
-}
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    .then(() => {
+      handleRoomDispo()
+    })
+    .then(() => {
+      alert("Votre réservation est enregitrée");
+    })
+      .catch((error) => {
+        window.alert(error);
+        return;
+      });
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -95,71 +114,53 @@ function FormResa(props) {
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" sx={{ marginBottom: 3 }}>
               Liste des participants
             </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  label="Prénom"
+                  onChange={handleChangeForm}
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Nom"
+                  name="lastName"
+                  onChange={handleChangeForm}
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item sm={3}>
+                <TextField
+                  required
+                  helperText="Date de naissance"
+                  fullWidth
+                  name="birthday"
+                  type="date"
+                  onChange={handleChangeForm}
+                  autoComplete=""
+                />
+              </Grid>
+              <Button sm={3} onClick={addPlayer} disabled={!btnAdd}>
+                Ajouter
+              </Button>
+            </Grid>
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
-              {/* //////////////////////////////////////////////////////////////////// */}
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    autoComplete="given-name"
-                    name="firstName"
-                    required
-                    fullWidth
-                    label="Prénom"
-                    onChange={handleChangeForm}
-                    autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    fullWidth
-                    label="Nom"
-                    name="lastName"
-                    onChange={handleChangeForm}
-                    autoComplete="family-name"
-                  />
-                </Grid>
-                <Grid item sm={3}>
-                  <TextField
-                    required
-                    helperText="Date de naissance du participant"
-                    fullWidth
-                    name="birthday"
-                    type="date"
-                    onChange={handleChangeForm}
-                    autoComplete=""
-                  />
-                </Grid>
-                <Button sm={3} onClick={addPlayer} disabled={!btnAdd}>
-                  Ajouter
-                </Button>
-              </Grid>
-              {/* //////////////////////////////////////////////////////////////////////////// */}
-              <Box
-                            component="form"
-                            noValidate
-                            onSubmit={handleSubmit}
-                            sx={{ mt: 3 }}
-                        >    
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                disabled={!btnSend}
-                            >
-                                Réserver
-                            </Button>
-                        </Box>
-              {/* <Button
+              <Button
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -167,7 +168,7 @@ function FormResa(props) {
                 disabled={!btnSend}
               >
                 Réserver
-              </Button> */}
+              </Button>
             </Box>
           </Box>
         </Container>

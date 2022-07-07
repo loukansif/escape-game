@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 const reservationSchema = new mongoose.Schema({
-  iduser: String,
-  idRoom: String,
-  dayReservation: String,
+  idUser: String,
+  nameRoom: String,
+  dayReservation: Date,
   players: Array
 })
 

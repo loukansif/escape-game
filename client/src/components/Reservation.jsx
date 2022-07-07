@@ -85,7 +85,7 @@ function Reservation() {
             </p>
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            <FormResa minPlayers={room.minplayers} maxPlayers={room.capacity} />
+            <FormResa minPlayers={room.minplayers} maxPlayers={room.capacity} nameRoom={room.name} dispo={room.dispo} idRoom={room._id} indexDay={paramResa.indexDay} indexDDay={paramResa.indexDDay} />
           </Typography>
         </CardContent>
       </Card>
