@@ -21,7 +21,7 @@ function Home() {
 
   return (
     <>
-      <h1 className="title">Bienvenue sur le site de résa Escape Room</h1>
+      <h1 className="title">Bienvenue à l'Escape Game</h1>
       <div className="rooms">
         {rooms.map((room) => {
           return <CardRoom room={room} key={room._id} />;

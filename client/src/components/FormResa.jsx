@@ -33,31 +33,21 @@ function FormResa(props) {
   function addPlayer() {
     dispo[props.indexDay][props.indexDDay] = false;
     players.push({ ...form });
+    alert("Le participant est ajouté")
     nbMinPlayers++;
     nbMaxPlayers++;
     if (nbMaxPlayers == props.maxPlayers) {
       setBtnAdd(!btnAdd);
       console.log("btnAdd ok");
     }
+    // if (nbMinPlayers == props.minPlayers) {
+    //   setBtnSend(!btnSend);
+    //   console.log("btnAdd ok");
+    // }
     console.log(players);
     console.log(dispo);
   }
   function handleRoomDispo() {
-   
-    // fetch(`http://localhost:5000/salles/${idRoom}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(dispo),
-    // })
-    //   .then(() => {
-    //     alert("Salle mise à jour");
-    //   })
-    //   .catch((error) => {
-    //     window.alert(error);
-    //     return;
-    //   });
 
     fetch(`http://localhost:5000/salles/${idRoom}`, {
       method: 'put',
